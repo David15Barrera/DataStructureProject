@@ -321,7 +321,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BtnImportarActionPerformed
 
-    private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarActionPerformed
+    private void btnVerificarActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
          if (jTextArea1.equals("")) {
             JOptionPane.showMessageDialog(null, "No se a ingresado apuestas");
@@ -344,7 +344,7 @@ public class Principal extends javax.swing.JFrame {
                 System.out.println("Error: " + e);
             }
         }
-    }//GEN-LAST:event_btnVerificarActionPerformed
+    }                                            
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
@@ -411,7 +411,7 @@ public class Principal extends javax.swing.JFrame {
     
     public void sendApuestas(Apuesta[] apuestas, int numero, String linea) {
         Apuesta nuevaApuesta = new Apuesta();
-        int[] lugares = new int[10];
+        int[] posicion = new int[10];
         double pasos = 0;
         try {
             long startTime = System.currentTimeMillis();
@@ -429,20 +429,20 @@ public class Principal extends javax.swing.JFrame {
 
             String nombre = linea.substring(1, comas[0] - 1);
             double monto = Double.parseDouble(linea.substring(comas[0] + 2, comas[1] - 1));
-            lugares[0] = Integer.parseInt(linea.substring(comas[1] + 2, comas[2] - 1));
-            lugares[1] = Integer.parseInt(linea.substring(comas[2] + 2, comas[3] - 1));
-            lugares[2] = Integer.parseInt(linea.substring(comas[3] + 2, comas[4] - 1));
-            lugares[3] = Integer.parseInt(linea.substring(comas[4] + 2, comas[5] - 1));
-            lugares[4] = Integer.parseInt(linea.substring(comas[5] + 2, comas[6] - 1));
-            lugares[5] = Integer.parseInt(linea.substring(comas[6] + 2, comas[7] - 1));
-            lugares[6] = Integer.parseInt(linea.substring(comas[7] + 2, comas[8] - 1));
-            lugares[7] = Integer.parseInt(linea.substring(comas[8] + 2, comas[9] - 1));
-            lugares[8] = Integer.parseInt(linea.substring(comas[9] + 2, comas[10] - 1));
-            lugares[9] = Integer.parseInt(linea.substring(comas[10] + 2, linea.length() - 1));
+            posicion[0] = Integer.parseInt(linea.substring(comas[1] + 2, comas[2] - 1));
+            posicion[1] = Integer.parseInt(linea.substring(comas[2] + 2, comas[3] - 1));
+            posicion[2] = Integer.parseInt(linea.substring(comas[3] + 2, comas[4] - 1));
+            posicion[3] = Integer.parseInt(linea.substring(comas[4] + 2, comas[5] - 1));
+            posicion[4] = Integer.parseInt(linea.substring(comas[5] + 2, comas[6] - 1));
+            posicion[5] = Integer.parseInt(linea.substring(comas[6] + 2, comas[7] - 1));
+            posicion[6] = Integer.parseInt(linea.substring(comas[7] + 2, comas[8] - 1));
+            posicion[7] = Integer.parseInt(linea.substring(comas[8] + 2, comas[9] - 1));
+            posicion[8] = Integer.parseInt(linea.substring(comas[9] + 2, comas[10] - 1));
+            posicion[9] = Integer.parseInt(linea.substring(comas[10] + 2, linea.length() - 1));
 
             nuevaApuesta.setNombre(nombre);
             nuevaApuesta.setMonto(monto);
-            nuevaApuesta.setOrden(lugares);
+            nuevaApuesta.setOrden(posicion);
             nuevaApuesta.setValidacion(true);
             pasos += 10;
             long endTime = System.currentTimeMillis();

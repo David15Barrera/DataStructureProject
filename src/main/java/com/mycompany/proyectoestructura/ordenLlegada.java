@@ -246,7 +246,7 @@ public class ordenLlegada extends javax.swing.JFrame {
             if (orden[i] == 0) {
                 comprobacion = false;
             } else {
-                texto = texto + "Lugar No." + (i +1)  + ": Caballo " + orden[i] + "\n";
+                texto = texto + "Posicion " + (i +1)  + ": Caballo " + orden[i] + "\n";
                 dispose();
             }
         }        
