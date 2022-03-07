@@ -28,6 +28,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         btnResultados.setEnabled(false);
+        btnVerificar.setEnabled(false);
         this.setLocationRelativeTo(null);
     }
 
@@ -56,9 +57,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        textoMonto = new javax.swing.JTextField();
+        txtMonto = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        textoNombre = new javax.swing.JTextField();
+        txtNom = new javax.swing.JTextField();
         textoOrden = new javax.swing.JTextField();
         list1 = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
@@ -155,7 +156,7 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -165,7 +166,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel6)
                                 .addGap(5, 5, 5)
-                                .addComponent(textoMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jLabel7)))
@@ -183,11 +184,11 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(textoMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(16, 16, 16)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -286,7 +287,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
       jTextArea1.setText(null);
+      txtNom.setText(null);
+      txtMonto.setText(null);
+      textoOrden.setText(null);
         btnResultados.setEnabled(false);
+        btnVerificar.setEnabled(false);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void BtnImportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnImportarActionPerformed
@@ -345,9 +350,9 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
                 try {
             String texto = "";
-            double monto = Double.parseDouble(textoMonto.getText());
+            double monto = Double.parseDouble(txtMonto.getText());
             String orden = textoOrden.getText();
-            texto = " " + textoNombre.getText() + " , " + monto + " ,";
+            texto = " " + txtNom.getText() + " , " + monto + " ,";
             
             int comas[] = new int[9];
             int x = 0;
@@ -384,6 +389,7 @@ public class Principal extends javax.swing.JFrame {
     private void btnResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResultadosActionPerformed
         // TODO add your handling code here:
    Resultado ventanaResultados = new Resultado(apuestas, reporte);
+   dispose();
   
     }//GEN-LAST:event_btnResultadosActionPerformed
     
@@ -483,8 +489,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JComboBox<String> list1;
-    private javax.swing.JTextField textoMonto;
-    private javax.swing.JTextField textoNombre;
     private javax.swing.JTextField textoOrden;
+    private javax.swing.JTextField txtMonto;
+    private javax.swing.JTextField txtNom;
     // End of variables declaration//GEN-END:variables
 }

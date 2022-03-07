@@ -69,7 +69,7 @@ public class ordenLlegada extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(153, 51, 0));
         jLabel1.setText("Ingrese los resultados de la carrera");
 
-        jButton1.setText("Orden");
+        jButton1.setText("Generar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
