@@ -57,49 +57,7 @@ public class Verificacion {
             }
         }
         if (errores > 0) {
-
-            int opcionExportar = JOptionPane.showConfirmDialog(null, "Cancelar");
-
-            if (opcionExportar == JOptionPane.YES_OPTION) {
-
-                try {
-                    FileWriter escribir;
-                    PrintWriter linea;
-                    JFileChooser seleccionar = new JFileChooser();
-                    FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Texto", "txt");
-                    seleccionar.setAcceptAllFileFilterUsed(false);
-                    seleccionar.addChoosableFileFilter(filtro);
-                    File fichero;
-                    int Guardar = seleccionar.showDialog(null, "Guardar");
-
-                    if (Guardar == JFileChooser.APPROVE_OPTION) {
-                        fichero = seleccionar.getSelectedFile();
-                        if (fichero.exists()) {
-                            int opcion = JOptionPane.showConfirmDialog(null, "¿Desea volver a subir?");
-                            if (opcion == JOptionPane.YES_OPTION) {
-                                fichero.createNewFile();
-                                escribir = new FileWriter(fichero, false);
-                                escribir.write(texto);
-                                escribir.close();
-                                JOptionPane.showMessageDialog(null, "Reporte de errores Exportado");
-                            } else {
-                                JOptionPane.showMessageDialog(null, "Archivo no guardado");
-                            }
-                        } else {
-                            fichero.createNewFile();
-                            escribir = new FileWriter(fichero, false);
-                            escribir.write(texto);
-                            escribir.close();
-                            JOptionPane.showMessageDialog(null, "Reporte de errores Exportado");
-                        }
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error al Guardar");
-                    }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Error " + e);
-                }
-            }
+            JOptionPane.showMessageDialog(null, "Limpie y corrige los errores");
         } else {
             JOptionPane.showMessageDialog(null, "Todo Correcto");
         }

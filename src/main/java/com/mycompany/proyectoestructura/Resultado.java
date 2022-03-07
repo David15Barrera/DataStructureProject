@@ -4,17 +4,27 @@
  */
 package com.mycompany.proyectoestructura;
 
+import Clases.Apuesta;
+import javax.swing.JOptionPane;
+import com.mycompany.proyectoestructura.Reporte;
+
 /**
  *
  * @author david
  */
 public class Resultado extends javax.swing.JFrame {
+    private int[] resultados;
+    private Apuesta[] apuestas;
+    private Reporte reporte;
 
     /**
      * Creates new form Resultado
      */
-    public Resultado() {
+    public Resultado(Apuesta[] apuestas, Reporte reporte) {
+        this.apuestas = apuestas;
+        this.reporte = reporte;
         initComponents();
+        iniciar();
     }
 
     /**
@@ -30,13 +40,15 @@ public class Resultado extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        areaResultadosApuestas = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        areaResultadosCarrera = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Resultados");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -46,12 +58,18 @@ public class Resultado extends javax.swing.JFrame {
         jLabel1.setText("Resultados");
 
         jButton1.setText("Por nombre");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Por punteo");
-
-        jLabel2.setBackground(new java.awt.Color(153, 153, 153));
-
-        jLabel3.setBackground(new java.awt.Color(153, 153, 153));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Resportes");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -60,58 +78,73 @@ public class Resultado extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Carrera de Caballos");
+        jLabel4.setText("Resultados de carreras");
 
         jLabel5.setText("Apuestas de los jugadores");
+
+        areaResultadosApuestas.setColumns(20);
+        areaResultadosApuestas.setRows(5);
+        jScrollPane2.setViewportView(areaResultadosApuestas);
+
+        areaResultadosCarrera.setColumns(20);
+        areaResultadosCarrera.setRows(5);
+        jScrollPane1.setViewportView(areaResultadosCarrera);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 52, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(168, 168, 168))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(189, 189, 189))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(34, 34, 34))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel4)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(94, 94, 94)
+                        .addComponent(jButton2)
+                        .addGap(88, 88, 88))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(182, 182, 182))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel1)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton2))
                 .addGap(16, 16, 16))
         );
 
@@ -138,23 +171,144 @@ public class Resultado extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Reporte reportes = new Reporte();
-        reportes.setVisible(true);
+         reporte.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+   public void iniciar() {
+        JOptionPane.showMessageDialog(null, "Ingresa los resultados");
+        resultados = new int[10];
+        ordenLlegada vtnOrden = new ordenLlegada(resultados, areaResultadosCarrera, this);
+        vtnOrden.setVisible(true);
+    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        double pasos = 0;
+        long startTime = System.currentTimeMillis();
+        for (int i = 0; i < 10; i++) {
+            pasos++;
+            for (int j = 0; j < apuestas.length; j++) {
+                pasos++;
+                if (apuestas[j].isValidacion() == true) {
+                    pasos++;
+                    int[] orden = apuestas[j].getOrden();
+                    if (resultados[i] == orden[i]) {
+                        pasos++;
+                        if (i == 0) {
+                            apuestas[j].aumentarPunteo(10);
+                        } else if (i == 1) {
+                            apuestas[j].aumentarPunteo(9);
+                        } else if (i == 2) {
+                            apuestas[j].aumentarPunteo(8);
+                        } else if (i == 3) {
+                            apuestas[j].aumentarPunteo(7);
+                        } else if (i == 4) {
+                            apuestas[j].aumentarPunteo(6);
+                        } else if (i == 5) {
+                            apuestas[j].aumentarPunteo(5);
+                        } else if (i == 6) {
+                            apuestas[j].aumentarPunteo(4);
+                        } else if (i == 7) {
+                            apuestas[j].aumentarPunteo(3);
+                        } else if (i == 8) {
+                            apuestas[j].aumentarPunteo(2);
+                        } else if (i == 9) {
+                            apuestas[j].aumentarPunteo(1);
+                        }
+                    }
+                }
+            }
+        }
+        long endTime = System.currentTimeMillis();
+        reporte.setTiempoResultados(((endTime - startTime) / 1000));
+        reporte.setPasosResultados(pasos);
+        ordenarPorPunteo();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+           ordenarPorNombre();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    public void ordenarPorNombre() {
+        long startTime = System.currentTimeMillis();
+        areaResultadosApuestas.setText(null);
+        double pasos = 0;
+        for (int i = 0; i < apuestas.length; i++) {
+            pasos++;
+            for (int j = 0; j < apuestas.length - 1; j++) {
+                if (apuestas[j].getNombre().compareTo(apuestas[j + 1].getNombre()) > 0) {
+                    Apuesta auxiliar;
+                    auxiliar = apuestas[j];
+                    apuestas[j] = apuestas[j + 1];
+                    apuestas[j + 1] = auxiliar;
+                    pasos++;
+                }
+            }
+        }
+        long endTime = System.currentTimeMillis();
+        reporte.setTiempoOrdenamientoA(((endTime - startTime) / 1000));
+        reporte.setPasosOrdenamientoA(pasos);
+        for (int i = 0; i < apuestas.length; i++) {
+            if (apuestas[i].isValidacion() == true) {
+                String texto = "";
+                texto = apuestas[i].getNombre() + " Punteo: " + apuestas[i].getPunteo();
+                areaResultadosApuestas.append(texto);
+                areaResultadosApuestas.append("\n");
+            }
+        }
+    }
+
+    public void ordenarPorPunteo() {
+        long startTime = System.currentTimeMillis();
+        double pasos = 0;
+        areaResultadosApuestas.setText(null);
+        int posicion;
+        Apuesta menor = new Apuesta();
+        Apuesta auxiliar = new Apuesta();
+
+        for (int i = 0; i < apuestas.length; i++) {
+            pasos++;
+            menor = apuestas[i];
+            posicion = i;
+            for (int j = i + 1; j < apuestas.length; j++) {
+                pasos++;
+                if (apuestas[j].getPunteo() < menor.getPunteo()) {
+                    menor = apuestas[j];
+                    posicion = j;
+                    pasos++;
+               }
+            }
+            if (posicion != i) {
+                pasos++;
+                auxiliar = apuestas[i];
+                apuestas[i] = apuestas[posicion];
+                apuestas[posicion] = auxiliar;
+            }
+        }
+        long endTime = System.currentTimeMillis();
+        reporte.setTiempoOrdenamientoP(((endTime - startTime) / 1000));
+        reporte.setPasosOrdenamientoP(pasos);
+        for (int i = apuestas.length - 1; i >= 0; i--) {
+            if (apuestas[i].isValidacion() == true) {
+                String texto = "";
+                texto = apuestas[i].getNombre() + " Punteo: " + apuestas[i].getPunteo();
+                areaResultadosApuestas.append(texto);
+                areaResultadosApuestas.append("\n");
+            }
+        }
+    }
     /**
      * @param args the command line arguments
      */
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea areaResultadosApuestas;
+    private javax.swing.JTextArea areaResultadosCarrera;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

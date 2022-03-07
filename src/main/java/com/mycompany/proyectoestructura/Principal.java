@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -20,6 +21,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Principal extends javax.swing.JFrame {
     private Apuesta[] apuestas;
     Reporte reporte = new Reporte();
+    JTextArea areaResultadosCarrera;
     /**
      * Creates new form Principal
      */
@@ -58,7 +60,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         textoNombre = new javax.swing.JTextField();
         textoOrden = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        list1 = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -138,6 +140,8 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel6.setText("Q");
 
+        list1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -152,17 +156,16 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(textoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField1))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jLabel6)
-                                    .addGap(5, 5, 5)
-                                    .addComponent(textoMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(list1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel6)
+                                .addGap(5, 5, 5)
+                                .addComponent(textoMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addComponent(jLabel7)))
@@ -186,11 +189,11 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(textoMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(16, 16, 16)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(list1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(textoOrden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -331,7 +334,6 @@ public class Principal extends javax.swing.JFrame {
 
                 Verificacion verificacion = new Verificacion(reporte);
                 verificacion.verificarApuestas(apuestas);
-                verificacion.exportarErrores(apuestas);
                 btnResultados.setEnabled(true);
             } catch (Exception e) {
                 System.out.println("Error: " + e);
@@ -345,7 +347,7 @@ public class Principal extends javax.swing.JFrame {
             String texto = "";
             double monto = Double.parseDouble(textoMonto.getText());
             String orden = textoOrden.getText();
-            texto = "<" + textoNombre.getText() + ">,<" + monto + ">,";
+            texto = " " + textoNombre.getText() + " , " + monto + " ,";
             
             int comas[] = new int[9];
             int x = 0;
@@ -357,22 +359,22 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
             
-            texto = texto + "<" + orden.substring(0, comas[0]) + ">,";
-            texto = texto + "<" + orden.substring(comas[0] + 1, comas[1]) + ">,";
-            texto = texto + "<" + orden.substring(comas[1] + 1, comas[2]) + ">,";
-            texto = texto + "<" + orden.substring(comas[2] + 1, comas[3]) + ">,";
-            texto = texto + "<" + orden.substring(comas[3] + 1, comas[4]) + ">,";
-            texto = texto + "<" + orden.substring(comas[4] + 1, comas[5]) + ">,";
-            texto = texto + "<" + orden.substring(comas[5] + 1, comas[6]) + ">,";
-            texto = texto + "<" + orden.substring(comas[6] + 1, comas[7]) + ">,";
-            texto = texto + "<" + orden.substring(comas[7] + 1, comas[8]) + ">,";
-            texto = texto + "<" + orden.substring(comas[8] + 1, orden.length()) + ">";
+            texto = texto + " " + orden.substring(0, comas[0]) + " ,";
+            texto = texto + " " + orden.substring(comas[0] + 1, comas[1]) + " ,";
+            texto = texto + " " + orden.substring(comas[1] + 1, comas[2]) + " ,";
+            texto = texto + " " + orden.substring(comas[2] + 1, comas[3]) + " ,";
+            texto = texto + " " + orden.substring(comas[3] + 1, comas[4]) + " ,";
+            texto = texto + " " + orden.substring(comas[4] + 1, comas[5]) + " ,";
+            texto = texto + " " + orden.substring(comas[5] + 1, comas[6]) + " ,";
+            texto = texto + " " + orden.substring(comas[6] + 1, comas[7]) + " ,";
+            texto = texto + " " + orden.substring(comas[7] + 1, comas[8]) + " ,";
+            texto = texto + " " + orden.substring(comas[8] + 1, orden.length()) + " ";
             
             jTextArea1.append(texto);
             jTextArea1.append("\n");
             btnVerificar.setEnabled(true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ingreso Invalido");
+            JOptionPane.showMessageDialog(null, "Ingreso no aceptado");
         }
         
 
@@ -381,10 +383,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResultadosActionPerformed
         // TODO add your handling code here:
-        Resultado resultado = new Resultado();
-        resultado.setVisible(true);
-        dispose();
-        
+   Resultado ventanaResultados = new Resultado(apuestas, reporte);
+  
     }//GEN-LAST:event_btnResultadosActionPerformed
     
         public String[] ObtLineas(int numeroLineas, String texto) {
@@ -482,7 +482,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> list1;
     private javax.swing.JTextField textoMonto;
     private javax.swing.JTextField textoNombre;
     private javax.swing.JTextField textoOrden;
